@@ -7,12 +7,12 @@ meta:
   modified: 1778356916600
   description: ""
 collection:
-  - url: localhost:8000/soma/4/3
+  - url: localhost:8000/soma/-4/-9
     name: Soma
     meta:
       id: req_4c2e406b42734ec0875ffd7d9cdeaf77
       created: 1778356916612
-      modified: 1778942488820
+      modified: 1778954021145
       isPrivate: false
       description: ""
       sortKey: -1778356916613
@@ -35,7 +35,7 @@ collection:
     meta:
       id: req_374391fb3748414e8669b4bb178948f4
       created: 1778942463449
-      modified: 1778942924042
+      modified: 1778956022975
       isPrivate: false
       description: ""
       sortKey: -1778942463449
@@ -45,7 +45,7 @@ collection:
       text: |
         {
           "numero1": 10,
-          "numero2": 5
+          "numero2": 9
         }
     headers:
       - name: Content-Type
@@ -73,6 +73,39 @@ collection:
       sortKey: -1774260993119.5
     method: GET
     headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/soma_formato3
+    name: Soma-com Token
+    meta:
+      id: req_321040618e47473ca17f26a4d5a0a467
+      created: 1778958513067
+      modified: 1778958753236
+      isPrivate: false
+      description: ""
+      sortKey: -1778649690031
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "numero1": 10,
+          "numero2": 9,
+        	"api_token": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
       - name: User-Agent
         value: insomnia/12.4.0
         description: ""
