@@ -1,7 +1,23 @@
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(
+    title="Aula FastAPI",
+    description="Contém todos os endpoints disponíveis a serem codificados",
+    summary="API desenvolvida durante a aula de Construção de APIs para IA",
+    version="0.1",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Luciano Cordeiro",
+        "url": "https://github.com/lacsousa/build-apis",
+        "email": "lacsousa@gmail.com",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+)
+
 
 @app.get("/")
 def read_root():
@@ -29,7 +45,7 @@ class SomaResponse(BaseModel):
 @app.post(
     path = "/soma_formato2",
     response_model=SomaResponse,
-    status_code=status.HTTP_200_OK
+    summary="Soma de 2 números passando pelo body"
 )
 def soma_formato2(dados: SomaRequest):
     total = dados.numero1 + dados.numero2
