@@ -56,11 +56,24 @@ source .venv/bin/activate
 2. Instale dependências necessárias (exemplo mínimo):
 
 ```bash
+# Recomendado: use o gerenciador de projetos `uv` configurado para este repositório.
+# Exemplo genérico (se o seu projeto define um script de instalação):
+uv run install
+
+# Alternativa: instalar manualmente com pip
 python -m pip install --upgrade pip
 python -m pip install openai python-dotenv uvicorn[standard]
 ```
 
 3. Ajuste o arquivo `.env` (se estiver usando):
+
+Você pode criar o arquivo `.env` copiando o exemplo fornecido `.example-env`:
+
+```bash
+cp .example-env .env
+```
+
+Caso prefira editar manualmente, garanta que a variável esteja em uma única linha:
 
 ```env
 OPENAI_API_KEY=sk-...   # tudo em uma linha
