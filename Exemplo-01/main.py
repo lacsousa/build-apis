@@ -1,10 +1,22 @@
 from enum import Enum
 import os
+import logging
 
 from dotenv import load_dotenv
 import openai
 from fastapi import FastAPI, status, HTTPException, Depends
 from pydantic import BaseModel
+
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("fastapi")
+
+logger.info('Mensagem informativa')
+logger.warning('Mensagem de alerta')
+logger.error('Mensagem de erro')
+logger.critical('Mensagem crítica')
+
 
 load_dotenv()
 openai_client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))

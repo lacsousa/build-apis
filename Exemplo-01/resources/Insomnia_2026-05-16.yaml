@@ -90,7 +90,7 @@ collection:
     meta:
       id: req_321040618e47473ca17f26a4d5a0a467
       created: 1778958513067
-      modified: 1778958753236
+      modified: 1778959437715
       isPrivate: false
       description: ""
       sortKey: -1778649690031
@@ -102,6 +102,37 @@ collection:
           "numero1": 10,
           "numero2": 9,
         	"api_token": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/historia
+    name: Historia
+    meta:
+      id: req_033f1a6121fb456ebff02d1144d188ff
+      created: 1778960244184
+      modified: 1778960260342
+      isPrivate: false
+      description: ""
+      sortKey: -1778796076740
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "tema": "Lobo mal"
         }
     headers:
       - name: Content-Type
