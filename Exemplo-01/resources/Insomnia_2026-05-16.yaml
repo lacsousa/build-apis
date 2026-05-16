@@ -1,0 +1,100 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_5b5d5464067c47748a97a88237f55ce8
+  created: 1778356916600
+  modified: 1778356916600
+  description: ""
+collection:
+  - url: localhost:8000/soma/4/3
+    name: Soma
+    meta:
+      id: req_4c2e406b42734ec0875ffd7d9cdeaf77
+      created: 1778356916612
+      modified: 1778942488820
+      isPrivate: false
+      description: ""
+      sortKey: -1778356916613
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/soma_formato2
+    name: Soma-outro formato
+    meta:
+      id: req_374391fb3748414e8669b4bb178948f4
+      created: 1778942463449
+      modified: 1778942924042
+      isPrivate: false
+      description: ""
+      sortKey: -1778942463449
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "numero1": 10,
+          "numero2": 5
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000
+    name: Hello
+    meta:
+      id: req_8ad3d6b7aefb4fdcbe48dd1061b1ef9f
+      created: 1778952463747
+      modified: 1778952470156
+      isPrivate: false
+      description: ""
+      sortKey: -1774260993119.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.4.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_eed3e609f096f2bc5ad1a89abbf81e3160602b8b
+    created: 1778356916608
+    modified: 1778356916608
+environments:
+  name: Base Environment
+  meta:
+    id: env_eed3e609f096f2bc5ad1a89abbf81e3160602b8b
+    created: 1778356916608
+    modified: 1778356916608
+    isPrivate: false
