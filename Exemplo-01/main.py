@@ -8,14 +8,15 @@ from fastapi import FastAPI, status, HTTPException, Depends
 from pydantic import BaseModel
 
 
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger("fastapi")
 
-logger.info('Mensagem informativa')
-logger.warning('Mensagem de alerta')
-logger.error('Mensagem de erro')
-logger.critical('Mensagem crítica')
+logger.info("Mensagem informativa")
+logger.warning("Mensagem de alerta")
+logger.error("Mensagem de erro")
+logger.critical("Mensagem crítica")
 
 
 load_dotenv()
@@ -38,22 +39,20 @@ app = FastAPI(
     },
 )
 
-API_TOKEN = '12345'
+API_TOKEN = "12345"
 
-@app.get(
-    path="/", 
-    deprecated=True,
-    summary="Rota será descontinuada em 15/06/2026"
-)
+
+@app.get(path="/", deprecated=True, summary="Rota será descontinuada em 15/06/2026")
 def read_root():
     return {"Hello": "from exemplo-01!"}
+
 
 # Passando o número 1 e 2 na URL
 @app.get(
     path="/soma/v1/{numero1}/{numero2}",
     summary="Soma dois números inteiros",
     description="Recebe dois números inteiros e retorna a soma",
-    tags=["Operações matemáticas"]
+    tags=["Operações matemáticas"],
 )
 def soma(numero1: int, numero2: int):
     total = numero1 + numero2
@@ -68,15 +67,17 @@ class SomaRequest(BaseModel):
     numero1: int
     numero2: int
 
+
 class SomaResponse(BaseModel):
     resultado: int
 
+
 # Passando o número 1 e 2 no corpo da requisição
 @app.post(
-    path = "/soma/v2",
+    path="/soma/v2",
     response_model=SomaResponse,
     summary="Soma de 2 números passando pelo body",
-    status_code=status.HTTP_201_CREATED
+    status_code=status.HTTP_201_CREATED,
 )
 def soma_formato2(dados: SomaRequest):
     total = dados.numero1 + dados.numero2
@@ -88,9 +89,12 @@ class Numeros(BaseModel):
     numero2: int
     api_token: str
 
+
 def common_api_token(numeros: Numeros):
     if numeros.api_token != API_TOKEN:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido"
+        )
     return {"api_token": numeros.api_token}
 
 
@@ -100,12 +104,12 @@ def soma(numeros: Numeros):
     return {"resultado": total}
 
 
-
 class TipoOperacao(str, Enum):
     soma = "soma"
     subtracao = "subtracao"
     multiplicacao = "multiplicacao"
     divisao = "divisao"
+
 
 @app.post("/operacao_matematica")
 def operacao_matematica(numeros: Numeros, operacao: TipoOperacao):
@@ -134,7 +138,7 @@ class HistoriaResponse(BaseModel):
     response_model=HistoriaResponse,
     summary="Gera uma história a partir de um tema usando OpenAI",
     status_code=status.HTTP_200_OK,
-    tags=["IA"]
+    tags=["IA"],
 )
 def gerar_historia(dados: HistoriaRequest):
     if not openai_client.api_key:
@@ -164,5 +168,3 @@ def gerar_historia(dados: HistoriaRequest):
         )
 
     return {"tema": dados.tema, "historia": historia}
-
-
