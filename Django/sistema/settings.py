@@ -109,6 +109,18 @@ REST_FRAMEWORK = {
     )
 }
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "Autenticação JWT usando o formato: Bearer <seu_token>"
+        }
+    },
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
