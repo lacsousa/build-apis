@@ -35,5 +35,13 @@ class MeuModelo(BaseModel):
 ## Documentação Automática
 
 Com o servidor em execução, o FastAPI gera automaticamente interfaces de documentação interativas que podem ser acessadas pelo navegador:
+
 - **Swagger UI**: `http://localhost:8000/docs` (Permite testar a API diretamente pelo navegador)
 - **ReDoc**: `http://localhost:8000/redoc` (Layout alternativo de documentação)
+
+## Linting e Qualidade de Código com Ruff
+
+- `uv add --dev ruff`: adiciona o `ruff` como dependência de desenvolvimento no projeto.
+- `uv run ruff check .`: verifica o código Python em busca de problemas de estilo, erros e formatação.
+- `uv run ruff format .`: formata automaticamente os arquivos Python suportados pelo `ruff`.
+- `ruff` é uma ferramenta rápida de lint/format para Python, que substitui e unifica regras de `flake8`, `isort`, `black`, `mypy` e outros em um único runner.
