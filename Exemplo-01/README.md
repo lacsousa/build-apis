@@ -9,7 +9,8 @@ O `uv` é um gerenciador de pacotes e projetos para Python extremamente rápido.
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-*(Para usuários de Windows, utilize o powershell: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`)*
+
+_(Para usuários de Windows, utilize o powershell: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`)_
 
 ## 2. Adicionar o FastAPI
 
@@ -32,4 +33,30 @@ uv run fastapi dev main.py
 Com o servidor rodando, você pode acessar a sua API de duas formas através do navegador:
 
 - **Rota Raiz:** Acesse [http://localhost:8000/](http://localhost:8000/) para ver a resposta inicial (ex: `{"Hello": "from exemplo-01!"}`).
-- **Documentação Interativa (Swagger UI):** Acesse [http://localhost:8000/docs](http://localhost:8000/docs) para visualizar e interagir graficamente com todas as rotas da sua API. Nela, você pode testar as requisições usando o botão *"Try it out"* e depois *"Execute"*.
+- **Documentação Interativa (Swagger UI):** Acesse [http://localhost:8000/docs](http://localhost:8000/docs) para visualizar e interagir graficamente com todas as rotas da sua API. Nela, você pode testar as requisições usando o botão _"Try it out"_ e depois _"Execute"_.
+
+## Mudanças recentes (refatoração)
+
+- Separei responsabilidade em módulos: agora há um pacote `api` com submódulos `models`, `utils`, `services` e `routers`.
+- `api/services.py`: centraliza o cliente OpenAI (`openai_client`) e o carregamento de variáveis de ambiente.
+- `api/routers/operacoes_router.py` e `api/routers/llm_router.py`: rotas convertidas para `APIRouter` e registradas em `api/main.py`.
+- `api/utils.py`: funções auxiliares (`get_logger`, `common_api_token`, `execute_prompt`) atualizadas para usar `api.services.openai_client`.
+- Adicionados testes em `tests/test_api.py` (6 testes, incluindo mock do cliente OpenAI).
+
+Se você usa o servidor dev com `uv`, rode a partir da raiz do projeto:
+
+```bash
+uv run fastapi dev api/main.py
+```
+
+Se a porta 8000 já estiver em uso, inicie em outra porta:
+
+```bash
+uv run fastapi dev api/main.py --port 8001
+```
+
+Para executar a suíte de testes:
+
+```bash
+pytest -q
+```

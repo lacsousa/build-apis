@@ -1,12 +1,11 @@
 import logging
+import token
 from fastapi import HTTPException
 from fastapi import status
 from api.models import Numeros
 from api import services
 
-
-API_TOKEN = "12345"
-
+API_TOKEN = services.token
 
 def common_api_token(numeros: Numeros):
     logger = get_logger()
