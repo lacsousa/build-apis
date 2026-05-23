@@ -89,14 +89,94 @@ python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 ```bash
 curl -X POST http://127.0.0.1:8000/historia \
-	-H "Content-Type: application/json" \
-	-d '{"tema": "um dragão que aprende a amar livros"}'
+    -H "Content-Type: application/json" \
+    -d '{"tema": "um dragão que aprende a amar livros"}'
 ```
 
 ## 🐞 Problemas comuns e solução rápida
 
 - `405 Method Not Allowed` ao acessar a URL no navegador: use `POST` em vez de `GET`.
 - `{"detail": "OPENAI_API_KEY não configurada..."}`: verifique se a variável está definida no mesmo terminal onde o servidor é iniciado, ou corrija o arquivo `.env` (chave em uma única linha) e reinicie o servidor.
+
+---
+
+## 🐍 Django API – build-apis
+
+**Projeto Django** localizado em `Django/` fornece uma API RESTful completa com recursos de CRUD, soma simples, autenticação JWT e documentação Swagger.
+
+### Estrutura de Diretórios
+```
+build-apis/
+├─ Django/
+│   ├─ api/
+│   │   ├─ __init__.py
+│   │   ├─ models.py
+│   │   ├─ serializers.py
+│   │   ├─ views.py      # ModelViewSet, function‑based & class‑based views
+│   │   └─ urls.py       # (opcional) rotas específicas da API
+│   ├─ sistema/
+│   │   ├─ __init__.py
+│   │   ├─ settings.py   # inclui rest_framework, drf_yasg, simplejwt
+│   │   ├─ urls.py       # rotas raiz, JWT endpoints, Swagger UI
+│   │   └─ wsgi.py
+│   ├─ manage.py
+│   ├─ notes.md         # notas rápidas para o projeto Django
+│   └─ .gitignore
+├─ Exemplo-01/          # Projeto FastAPI (mantido)
+├─ notes.md             # notas gerais do repositório
+└─ README.md            # (este documento)
+```
+
+### Como iniciar o projeto Django
+1. **Criar e ativar ambiente virtual**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+2. **Instalar dependências** (verifique `requirements.txt` em `Django/`)
+   ```bash
+   pip install -r Django/requirements.txt
+   # ou manualmente:
+   pip install Django djangorestframework drf-yasg djangorestframework-simplejwt
+   ```
+3. **Aplicar migrações**
+   ```bash
+   cd Django
+   python manage.py migrate
+   ```
+4. **Criar super‑user (opcional)**
+   ```bash
+   python manage.py createsuperuser
+   ```
+5. **Rodar o servidor de desenvolvimento**
+   ```bash
+   python manage.py runserver
+   ```
+   A API estará disponível em `http://127.0.0.1:8000/`.
+
+### Principais Endpoints da API Django
+| Rota | Método | Descrição |
+|------|--------|-----------|
+| `/soma/<int:numero1>/<int:numero2>/` | GET | Soma simples (versão 1) |
+| `/soma/v2/` | POST | Soma via payload JSON (versão 2) |
+| `/soma/v3/` | POST | Classe baseada com schema OpenAPI (versão 3) |
+| `/empresa/` | GET/POST/PUT/DELETE | CRUD para o modelo `Empresa` |
+| `/swagger/` | GET | UI interativa da documentação (drf‑yasg) |
+| `/api/token/` | POST | Obter JWT (username & password) |
+| `/api/token/refresh/` | POST | Refresh do JWT |
+| `/api/token/verify/` | POST | Verificar JWT |
+
+### Autenticação JWT
+- Configurada em `settings.py` com `REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES']`.
+- Para proteger vistas, adicione `permission_classes = [permissions.IsAuthenticated]`.
+- Tokens são obtidos via `POST /api/token/`.
+
+### Documentação Swagger
+A UI Swagger está disponível em `http://127.0.0.1:8000/swagger/` e Redoc em `/redoc/`.
+
+### Notas rápidas
+- Veja o arquivo [`Django/notes.md`](Django/notes.md) para passos de setup, troubleshooting e próximos passos.
+- Para atualizar dependências, ajuste `requirements.txt` dentro da pasta `Django/`.
 
 ---
 
