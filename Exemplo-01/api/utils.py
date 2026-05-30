@@ -1,11 +1,12 @@
 import logging
-import token
+import openai
 from fastapi import HTTPException
 from fastapi import status
 from api.models import Numeros
 from api import services
 
 API_TOKEN = services.token
+
 
 def common_api_token(numeros: Numeros):
     logger = get_logger()
@@ -44,4 +45,3 @@ def execute_prompt(prompt: str, model: str = "gpt-3.5-turbo") -> str:
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=f"Erro ao chamar OpenAI: {str(exc)}",
         )
-    

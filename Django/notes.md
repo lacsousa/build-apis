@@ -62,10 +62,21 @@ Django/
   ]
   ```
 
-## Common Issues
+## Common Issues & Troubleshooting
+
 - **Missing migrations**: Run `python manage.py makemigrations` then `migrate`.
 - **Port already in use**: Change the port with `python manage.py runserver 0.0.0.0:8001`.
 - **Environment variables**: Adjust settings in `sistema/settings.py` (e.g., `DEBUG`, `ALLOWED_HOSTS`).
+- **Command not found / failed to spawn: `ruff`**:
+  * **Causa**: O `ruff` não está instalado no `.venv` do Django.
+  * **Solução**: Você pode rodar de forma avulsa usando `uvx ruff check .` ou adicioná-lo permanentemente ao projeto rodando `uv add --dev ruff`.
+- **`pre-commit` Command Executions**:
+  * **Uso**: O arquivo `.pre-commit-config.yaml` está localizado dentro de `Django/`. Para executar manualmente os hooks em todos os arquivos do repositório, execute:
+    ```bash
+    cd Django
+    pre-commit run --all-files
+    ```
+  * **Falha nos hooks de formatação**: Se o `pre-commit` acusar falha em hooks como `ruff-format` ou `trailing-whitespace` mas os arquivos foram modificados, basta fazer `git add .` das modificações automáticas e tentar o commit novamente.
 
 ---
 *Keep this file updated as the project evolves.*

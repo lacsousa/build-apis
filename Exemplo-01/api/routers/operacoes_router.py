@@ -1,5 +1,3 @@
-
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from api.models import (
     SomaRequest,
@@ -45,10 +43,12 @@ def soma_formato2(dados: SomaRequest):
     total = dados.numero1 + dados.numero2
     return {"resultado": total}
 
+
 @router.post(path="/soma_formato3", dependencies=[Depends(common_api_token)])
-def soma(numeros: Numeros):
+def soma_formato3(numeros: Numeros):
     total = numeros.numero1 + numeros.numero2
     return {"resultado": total}
+
 
 @router.post("/operacao_matematica")
 def operacao_matematica(numeros: Numeros, operacao: TipoOperacao):
@@ -61,8 +61,3 @@ def operacao_matematica(numeros: Numeros, operacao: TipoOperacao):
     elif operacao == TipoOperacao.divisao:
         resultado = numeros.numero1 / numeros.numero2
     return {"resultado": resultado}
-
-
-
-
-

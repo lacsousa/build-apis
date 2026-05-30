@@ -1,6 +1,6 @@
 # 🚀 Construção de APIs para Inteligência Artificial
 
-**UFG - Universidade Federal de Goiás**  
+**UFG - Universidade Federal de Goiás**
 👨‍🏫 **Professor:** Rogério Rodrigues Carvalho
 
 Bem-vindo ao repositório de projetos e estudos da disciplina de **Construção de APIs para IA**. Aqui você encontrará os exercícios, exemplos práticos e anotações feitas ao longo das aulas.
@@ -95,10 +95,34 @@ curl -X POST http://127.0.0.1:8000/historia \
 
 ## 🐞 Problemas comuns e solução rápida
 
-- `405 Method Not Allowed` ao acessar a URL no navegador: use `POST` em vez de `GET`.
-- `{"detail": "OPENAI_API_KEY não configurada..."}`: verifique se a variável está definida no mesmo terminal onde o servidor é iniciado, ou corrija o arquivo `.env` (chave em uma única linha) e reinicie o servidor.
+- **`405 Method Not Allowed` ao acessar a URL no navegador**: use `POST` em vez de `GET`.
+- **`{"detail": "OPENAI_API_KEY não configurada..."}`**: verifique se a variável está definida no mesmo terminal onde o servidor é iniciado, ou corrija o arquivo `.env` (chave em uma única linha) e reinicie o servidor.
+- **Erro `zsh: command not found: ruff` ou `Failed to spawn: ruff`**: O `ruff` não está instalado globalmente.
+  * *Solução rápida*: Use o comando `uvx ruff check .` para rodar sem precisar instalar globalmente, ou entre na pasta do respectivo subprojeto e instale-o como dependência local.
+- **Ambiente virtual / Dependências globais**: Lembre-se de sempre navegar para as pastas de projetos específicos (`cd Django` ou `cd Exemplo-01`) antes de ativar a virtualenv ou executar comandos do `uv`.
+
+## ⚙️ Qualidade de Código e Git Hooks (Pre-commit)
+
+Adicionamos configuração do **pre-commit** no projeto para rodar ferramentas como **Ruff** (linting e formatação rápida), `detect-private-key`, `trailing-whitespace` e `end-of-file-fixer` de forma automatizada a cada commit.
+
+* **Instalação rápida do pre-commit**:
+  ```bash
+  pip install pre-commit
+  # ou usando uv
+  uv pip install pre-commit
+  ```
+* **Ativação dos hooks**:
+  ```bash
+  pre-commit install
+  ```
+* **Executar manualmente em todos os arquivos**:
+  ```bash
+  cd Django
+  pre-commit run --all-files
+  ```
 
 ---
+
 
 ## 🐍 Django API – build-apis
 

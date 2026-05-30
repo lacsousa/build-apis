@@ -1,20 +1,5 @@
-from enum import Enum
-import os
-import logging
-
-from dotenv import load_dotenv
-import openai
-from fastapi import FastAPI, status, HTTPException, Depends
-from pydantic import BaseModel
-from api.models import (
-    SomaRequest,
-    SomaResponse,
-    Numeros,
-    TipoOperacao,
-    HistoriaRequest,
-    HistoriaResponse,
-)
-from api.utils import common_api_token, get_logger
+from fastapi import FastAPI
+from api.utils import get_logger
 from api.routers.llm_router import router as llm_router
 from api.routers.operacoes_router import router as operacoes_router
 
