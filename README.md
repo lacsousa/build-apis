@@ -7,6 +7,8 @@ Bem-vindo ao repositório de projetos e estudos da disciplina de **Construção 
 
 ---
 
+
+
 ## 📂 O que já temos por aqui?
 
 ✅ **[Exemplo-01: Primeira API com FastAPI](./Exemplo-01/)**
