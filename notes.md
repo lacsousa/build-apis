@@ -106,4 +106,3 @@ Para garantir que o código esteja sempre bem formatado e livre de erros antes d
 ### 4. Erro: `pre-commit` falha com erros de lógica no Ruff (`F811`, `F821`, etc.)
 * **Causa**: O linter detectou erros reais de código (como funções redefinidas com o mesmo nome ou variáveis indefinidas).
 * **Solução**: Esses erros não podem ser corrigidos automaticamente e exigem correção manual no código fonte. Após corrigir os arquivos, adicione-os no git com `git add` e tente commitar novamente.
-
