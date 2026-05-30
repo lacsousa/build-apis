@@ -117,7 +117,6 @@ Adicionamos configuração do **pre-commit** no projeto para rodar ferramentas c
   ```
 * **Executar manualmente em todos os arquivos**:
   ```bash
-  cd Django
   pre-commit run --all-files
   ```
 

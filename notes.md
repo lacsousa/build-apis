@@ -68,7 +68,7 @@ Para garantir que o código esteja sempre bem formatado e livre de erros antes d
    ```bash
    pre-commit run --all-files
    ```
-   *(Nota: Se o arquivo de configuração `.pre-commit-config.yaml` estiver em uma subpasta como `Django/`, execute o comando de dentro dessa pasta).*
+   *(Nota: O arquivo de configuração `.pre-commit-config.yaml` está localizado na raiz do repositório, garantindo que os hooks rodem em todos os projetos de forma integrada, inclusive no GitHub Actions).*
 
 ---
 

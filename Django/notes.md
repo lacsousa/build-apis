@@ -71,9 +71,8 @@ Django/
   * **Causa**: O `ruff` não está instalado no `.venv` do Django.
   * **Solução**: Você pode rodar de forma avulsa usando `uvx ruff check .` ou adicioná-lo permanentemente ao projeto rodando `uv add --dev ruff`.
 - **`pre-commit` Command Executions**:
-  * **Uso**: O arquivo `.pre-commit-config.yaml` está localizado dentro de `Django/`. Para executar manualmente os hooks em todos os arquivos do repositório, execute:
+  * **Uso**: O arquivo `.pre-commit-config.yaml` agora está localizado na **raiz do repositório** para que funcione globalmente (e no GitHub Actions). Para executar manualmente em todos os arquivos:
     ```bash
-    cd Django
     pre-commit run --all-files
     ```
   * **Falha nos hooks de formatação**: Se o `pre-commit` acusar falha em hooks como `ruff-format` ou `trailing-whitespace` mas os arquivos foram modificados, basta fazer `git add .` das modificações automáticas e tentar o commit novamente.
