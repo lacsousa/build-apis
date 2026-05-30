@@ -1,18 +1,17 @@
 import logging
 import openai
-from fastapi import HTTPException
+from fastapi import Query, HTTPException
 from fastapi import status
-from api.models import Numeros
 from api import services
 
 API_TOKEN = services.token
 
 
-def common_api_token(numeros: Numeros):
+def common_api_token(api_token: str = Query(...)):
     logger = get_logger()
-    logger.info(f"Token recebido: {numeros.api_token}")
+    logger.info(f"Token recebido: {api_token}")
 
-    if numeros.api_token != API_TOKEN:
+    if api_token != API_TOKEN:
         logger.warning("Token de autenticação inválido")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -20,7 +19,7 @@ def common_api_token(numeros: Numeros):
         )
 
     logger.info("Token de autenticação válido")
-    return {"api_token": numeros.api_token}
+    return {"api_token": api_token}
 
 
 def get_logger():

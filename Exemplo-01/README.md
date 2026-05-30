@@ -41,7 +41,7 @@ Com o servidor rodando, você pode acessar a sua API de duas formas através do 
 - `api/services.py`: centraliza o cliente OpenAI (`openai_client`) e o carregamento de variáveis de ambiente.
 - `api/routers/operacoes_router.py` e `api/routers/llm_router.py`: rotas convertidas para `APIRouter` e registradas em `api/main.py`.
 - `api/utils.py`: funções auxiliares (`get_logger`, `common_api_token`, `execute_prompt`) atualizadas para usar `api.services.openai_client`.
-- Adicionados testes em `tests/test_api.py` (6 testes, incluindo mock do cliente OpenAI).
+- Adicionados testes em `tests/test_api.py` (8 testes, incluindo mock do cliente OpenAI e validação de autenticação).
 
 Se você usa o servidor dev com `uv`, rode a partir da raiz do projeto:
 
@@ -58,7 +58,13 @@ uv run fastapi dev api/main.py --port 8001
 Para executar a suíte de testes:
 
 ```bash
-pytest -q
+uv run pytest tests/test_api.py -v
+```
+
+Para rodar com saída resumida:
+
+```bash
+uv run pytest tests/test_api.py -q
 ```
 
 ## Rodando com Docker

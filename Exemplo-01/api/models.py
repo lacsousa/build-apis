@@ -14,7 +14,6 @@ class SomaResponse(BaseModel):
 class Numeros(BaseModel):
     numero1: int
     numero2: int
-    api_token: str
 
 
 class TipoOperacao(str, Enum):

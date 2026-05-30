@@ -29,16 +29,26 @@ def test_soma_v2():
     assert resp.json() == {"resultado": 7}
 
 
-def test_soma_formato3():
-    payload = {"numero1": 3, "numero2": 4, "api_token": "12345"}
-    resp = client.post("/soma_formato3", json=payload)
+def test_soma_formato3(monkeypatch):
+    monkeypatch.setattr("api.utils.API_TOKEN", "12345")
+    resp = client.post("/soma_formato3?api_token=12345", json={"numero1": 3, "numero2": 4})
     assert resp.status_code == 200
     assert resp.json() == {"resultado": 7}
 
 
+def test_soma_formato3_token_invalido(monkeypatch):
+    monkeypatch.setattr("api.utils.API_TOKEN", "12345")
+    resp = client.post("/soma_formato3?api_token=errado", json={"numero1": 3, "numero2": 4})
+    assert resp.status_code == 401
+
+
+def test_soma_formato3_sem_token():
+    resp = client.post("/soma_formato3", json={"numero1": 3, "numero2": 4})
+    assert resp.status_code == 422
+
+
 def test_operacao_matematica():
-    payload = {"numero1": 4, "numero2": 5, "api_token": "12345"}
-    resp = client.post("/operacao_matematica?operacao=soma", json=payload)
+    resp = client.post("/operacao_matematica?operacao=soma", json={"numero1": 4, "numero2": 5})
     assert resp.status_code == 200
     assert resp.json() == {"resultado": 9}
 
