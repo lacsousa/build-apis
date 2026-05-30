@@ -37,3 +37,5 @@ Próximos passos recomendados
 
 - Adicionar `requirements-dev.txt` com `pytest` e outras dev-deps.
 - Opcional: adicionar `Makefile` ou `pyproject.toml` com tarefa `test` para simplifies testes.
+
+
