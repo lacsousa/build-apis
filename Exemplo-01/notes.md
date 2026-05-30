@@ -65,5 +65,3 @@ docker compose logs -f web   # acompanha os logs em tempo real
 ```
 
 > Para rodar junto com o Django, use o `docker-compose.yml` na raiz do repositório (`docker compose up --build` de lá). Nesse caso o FastAPI sobe na porta **8001**.
-
-
