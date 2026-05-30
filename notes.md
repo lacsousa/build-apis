@@ -72,6 +72,41 @@ Para garantir que o código esteja sempre bem formatado e livre de erros antes d
 
 ---
 
+## Docker
+
+### Subir os dois projetos juntos (raiz do repositório)
+
+```bash
+docker compose up --build
+```
+
+| Serviço | Porta | URL |
+|---------|-------|-----|
+| Django  | 8000  | http://localhost:8000 |
+| FastAPI | 8001  | http://localhost:8001 |
+
+### Subir apenas um serviço
+
+```bash
+docker compose up django --build
+docker compose up fastapi --build
+```
+
+### Rodar isolado a partir da pasta do projeto
+
+```bash
+cd Django && docker compose up --build
+cd Exemplo-01 && docker compose up --build
+```
+
+### Parar e remover containers
+
+```bash
+docker compose down
+```
+
+---
+
 ## Problemas Comuns e Soluções (Troubleshooting)
 
 ### 1. Erro: `zsh: command not found: ruff` ou `Failed to spawn: ruff`

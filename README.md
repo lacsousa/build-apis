@@ -23,11 +23,44 @@ Bem-vindo ao repositório de projetos e estudos da disciplina de **Construção 
 
 ---
 
+## 🐳 Rodando com Docker
+
+### Subir os dois projetos juntos
+
+Na raiz do repositório:
+
+```bash
+docker compose up --build
+```
+
+| Serviço | Porta | URL |
+|---------|-------|-----|
+| Django | 8000 | http://localhost:8000 |
+| FastAPI (Exemplo-01) | 8001 | http://localhost:8001 |
+
+### Subir apenas um projeto
+
+```bash
+docker compose up django --build
+docker compose up fastapi --build
+```
+
+Ou individualmente a partir da pasta de cada projeto:
+
+```bash
+cd Django && docker compose up --build
+cd Exemplo-01 && docker compose up --build
+```
+
+---
+
 ## 🛠️ Stack Tecnológica (Até o momento)
 
 - 🐍 **Python**
 - ⚡ **FastAPI**
+- 🎸 **Django + Django REST Framework**
 - 📦 **uv** (Gerenciador de pacotes e projetos)
+- 🐳 **Docker / Docker Compose**
 
 ---
 

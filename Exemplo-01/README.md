@@ -60,3 +60,22 @@ Para executar a suíte de testes:
 ```bash
 pytest -q
 ```
+
+## Rodando com Docker
+
+Certifique-se de ter o arquivo `.env` criado a partir do `.example-env`:
+
+```bash
+cp .example-env .env
+# edite o .env e adicione sua OPENAI_API_KEY
+```
+
+Suba o container:
+
+```bash
+docker compose up --build
+```
+
+A API estará disponível em `http://localhost:8000` e a documentação em `http://localhost:8000/docs`.
+
+> Para rodar junto com o projeto Django na porta 8001, use o `docker-compose.yml` na raiz do repositório.

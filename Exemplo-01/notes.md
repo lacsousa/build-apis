@@ -38,4 +38,32 @@ Próximos passos recomendados
 - Adicionar `requirements-dev.txt` com `pytest` e outras dev-deps.
 - Opcional: adicionar `Makefile` ou `pyproject.toml` com tarefa `test` para simplifies testes.
 
+---
+
+## Docker
+
+### Pré-requisito: arquivo .env
+
+```bash
+cp .example-env .env
+# edite o .env e preencha OPENAI_API_KEY e API_TOKEN
+```
+
+### Subir o container (a partir de `Exemplo-01/`)
+
+```bash
+docker compose up --build
+```
+
+A API estará disponível em `http://localhost:8000` e o Swagger em `/docs`.
+
+### Comandos úteis
+
+```bash
+docker compose down          # para e remove o container
+docker compose logs -f web   # acompanha os logs em tempo real
+```
+
+> Para rodar junto com o Django, use o `docker-compose.yml` na raiz do repositório (`docker compose up --build` de lá). Nesse caso o FastAPI sobe na porta **8001**.
+
 

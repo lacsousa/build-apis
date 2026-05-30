@@ -66,6 +66,18 @@ Swagger UI is available at `/swagger/` (and Redoc at `/redoc/`). The `SomaFormat
 ## Notes
 For more detailed information, see [notes.md](notes.md) – it contains quick‑start steps, common issues, and reminders to keep this file updated as the project evolves.
 
+## Rodando com Docker
+
+Suba o container diretamente da pasta `Django/`:
+
+```bash
+docker compose up --build
+```
+
+A API estará disponível em `http://localhost:8000` e o Swagger em `http://localhost:8000/swagger/`.
+
+> Para rodar junto com o projeto FastAPI (Exemplo-01), use o `docker-compose.yml` na raiz do repositório.
+
 ## Common Issues
 - **Missing migrations**: Run `python manage.py makemigrations` then `python manage.py migrate`.
 - **Port already in use**: Change the port with `python manage.py runserver 0.0.0.0:8001`.

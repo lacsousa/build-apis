@@ -1,0 +1,19 @@
+services:
+  fastapi:
+    build: ./Exemplo-01
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./Exemplo-01:/app
+    env_file:
+      - ./Exemplo-01/.env
+
+  django:
+    build: ./Django
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Django:/app
+    environment:
+      - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=sistema.settings

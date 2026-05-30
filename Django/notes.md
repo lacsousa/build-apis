@@ -62,6 +62,29 @@ Django/
   ]
   ```
 
+## Docker
+
+### Subir o container (a partir de `Django/`)
+
+```bash
+docker compose up --build
+```
+
+A API estará disponível em `http://localhost:8000` e o Swagger em `/swagger/`.
+
+### Comandos úteis
+
+```bash
+docker compose down          # para e remove o container
+docker compose logs -f web   # acompanha os logs em tempo real
+docker compose exec web python manage.py createsuperuser  # cria superuser dentro do container
+docker compose exec web python manage.py migrate          # roda migrações manualmente
+```
+
+> Para rodar junto com o Exemplo-01, use o `docker-compose.yml` na raiz do repositório (`docker compose up --build` de lá).
+
+---
+
 ## Common Issues & Troubleshooting
 
 - **Missing migrations**: Run `python manage.py makemigrations` then `migrate`.
